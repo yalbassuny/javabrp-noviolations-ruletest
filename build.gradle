@@ -1,0 +1,42 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.2.RELEASE'
+		sonarqubeGradlePluginVersion = '2.2.1'
+		gradleDockerPluginVersion = '3.0.5'
+	}
+	
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${sonarqubeGradlePluginVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: "org.sonarqube"
+
+sourceCompatibility = 1.8
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url "https://scm.devfactory.com/nexus/content/groups/public"
+    }
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'com.google.guava:guava:18.0'
+    compile 'commons-io:commons-io:2.0.1'
+
+    compile files('libs/date-check.jar')
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
