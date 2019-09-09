@@ -1,0 +1,1 @@
+# javabrp-noviolations-ruletest
